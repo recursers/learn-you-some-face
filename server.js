@@ -21,7 +21,7 @@ const CUSTOM_PROFILES = [
     id: 'custom-1',
     first_name: 'xaesit',
     image_path: '/faces/xaesit.jpg',
-    pronouns: 'he/him',
+    pronouns: 'xe/xem',
     role: 'current',
   },
 ];
