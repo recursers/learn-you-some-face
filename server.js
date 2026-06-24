@@ -16,6 +16,16 @@ const REDIRECT_URI = process.env.REDIRECT_URI || `http://localhost:${PORT}/auth/
 let cachedProfiles = null;
 let cacheTime = 0;
 
+const CUSTOM_PROFILES = [
+  {
+    id: 'custom-1',
+    first_name: 'xaesit',
+    image_path: '/faces/xaesit.jpg',
+    pronouns: 'he/him',
+    role: 'current',
+  },
+];
+
 const getRoleFromStints = (stints = []) => {
   if (stints.some((s) => s.type === 'employment' && s.in_progress)) return 'faculty';
   if (stints.some((s) => s.type === 'retreat' && s.in_progress)) return 'current';
@@ -183,7 +193,7 @@ app.get('/api/directory', async (req, res) => {
       token,
       profiles.map((p) => p.id),
     );
-    cachedProfiles = [...profiles, ...recentVisitors].filter(
+    cachedProfiles = [...profiles, ...recentVisitors, ...CUSTOM_PROFILES].filter(
       (p) => !p.image_path?.includes('no_photo'),
     );
     cacheTime = Date.now();
